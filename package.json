@@ -1,0 +1,29 @@
+{
+  "name": "majorleague",
+  "version": "0.0.0",
+  "description": "420 noscope",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itsrachelfish/mlp.git"
+  },
+  "keywords": [
+    "wetfish",
+    "mlp",
+    "majorleague",
+    "gaming"
+  ],
+  "author": "Rachel Fish",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/itsrachelfish/mlp/issues"
+  },
+  "homepage": "https://github.com/itsrachelfish/mlp",
+  "dependencies": {
+    "wetfish-basic": "~0.3.1",
+    "wetfish-server": "~0.1.1"
+  }
+}

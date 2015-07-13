@@ -1,0 +1,6 @@
+{{> head}}
+    {{> header}}
+
+    edit page
+    
+{{> foot}}

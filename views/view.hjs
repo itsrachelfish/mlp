@@ -1,0 +1,6 @@
+{{> head}}
+    {{> header}}
+
+    view a thing
+    
+{{> foot}}

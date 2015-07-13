@@ -1,0 +1,6 @@
+{{> head}}
+    {{> header}}
+
+    major league
+    
+{{> foot}}

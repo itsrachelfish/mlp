@@ -6,4 +6,7 @@ var server = require('wetfish-server').createServer(config);
 require('./models/example')(server.model);
 
 // Add some routes
-require('./routes/pages')(server);
+require('./routes/home')(server);
+require('./routes/edit')(server);
+require('./routes/save')(server);
+require('./routes/view')(server);

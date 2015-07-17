@@ -1,0 +1,20 @@
+.viewport {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0; }
+
+.canvas {
+  position: fixed;
+  border: 1px solid #ccc;
+  bottom: 12.5%;
+  left: 12.5%;
+  right: 12.5%;
+  top: 12.5%; }
+
+.timeline {
+  background-color: #eee;
+  position: absolute;
+  min-width: 400px;
+  min-height: 200px; }

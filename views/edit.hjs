@@ -1,6 +1,11 @@
 {{> head}}
     {{> header}}
 
-    edit page
-    
+    <div class="viewport">
+        <div class="canvas">
+
+        </div>
+
+        {{> timeline}}
+    </div>
 {{> foot}}

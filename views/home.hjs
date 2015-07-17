@@ -1,6 +1,7 @@
 {{> head}}
     {{> header}}
 
-    major league
-    
+    <p>major league</p>
+
+    <a href='/edit/stuff'>want to edit something?</a>
 {{> foot}}

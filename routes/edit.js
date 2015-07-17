@@ -7,6 +7,15 @@ module.exports = function(server)
 
     app.get('/edit/:page', function(req, res)
     {
-        event.emit('render', req, res, {view: 'edit'});
+        var options =
+        {
+            view: 'edit',
+            partials:
+            {
+                timeline: 'partials/timeline'
+            }
+        }
+        
+        event.emit('render', req, res, options);
     });
 }

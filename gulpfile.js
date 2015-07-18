@@ -5,42 +5,64 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var watchify = require('watchify');
 var browserify = require('browserify');
+var concat = require('gulp-concat');
 var sass = require('node-sass');
 
 // Initialize watchify
 var bundler = watchify(browserify({debug: true}));
 
-// Add main script file to the bundle
-bundler.add('./static/js/main.js');
-
-gulp.task('default', ['js', 'sass', 'watch']);
-gulp.task('js', jsBundle);
-gulp.task('sass', sassBundle);
-gulp.task('watch', watch);
-bundler.on('update', jsBundle);
-bundler.on('log', gutil.log);
-
-function jsBundle()
+// Object to handle bundling / compilation tasks
+var bundle =
 {
-    bundler.bundle()
-        // log errors if they happen
+    deps: function()
+    {
+        var dependencies =
+        [
+            './static/js/deps/basic.js',    // Load wetfish basic first
+            './static/js/deps/*.js',        // Load everything else
+        ];
+        
+        gulp.src(dependencies)
+        .pipe(concat('deps.js'))
+        .pipe(gulp.dest('./static/js'));
+    },
+    
+    js: function()
+    {
+        bundler.bundle()
+        // Log errors if they happen
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source('bundle.js'))
         .pipe(gulp.dest('./static/js'));
-}
- 
-function sassBundle()
-{
-    var options =
-    {
-        file: './static/css/main.scss',
-    };
+    },
 
-    var result = sass.renderSync(options);
-    fs.writeFileSync('./static/css/bundle.css', result.css);
-}
+    scss: function()
+    {
+        var options =
+        {
+            file: './static/css/main.scss',
+        };
+
+        var result = sass.renderSync(options);
+        fs.writeFileSync('./static/css/bundle.css', result.css);
+    }
+};
 
 function watch()
 {
-    gulp.watch('./static/css/*.scss', ['sass']);
+    gulp.watch('./static/css/**/*.scss', ['sass']);
 }
+
+// Add main script file to the bundle
+bundler.add('./static/js/main.js');
+bundler.on('update', bundle.js);
+bundler.on('log', gutil.log);
+
+// By default, do everything
+gulp.task('default', ['deps', 'js', 'scss', 'watch']);
+
+// Separate tasks for individual things
+gulp.task('deps', bundle.deps);
+gulp.task('js', bundle.js);
+gulp.task('scss', bundle.scss);
+gulp.task('watch', watch);

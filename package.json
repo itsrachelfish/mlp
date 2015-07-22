@@ -17,14 +17,14 @@
     "gaming"
   ],
   "author": "Rachel Fish",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/itsrachelfish/mlp/issues"
   },
   "homepage": "https://github.com/itsrachelfish/mlp",
   "dependencies": {
     "dragondrop": "^0.4.2",
-    "wetfish-basic": "^0.7.1",
+    "wetfish-basic": "^0.7.2",
     "wetfish-server": "~0.1.1"
   },
   "devDependencies": {

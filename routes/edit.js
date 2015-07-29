@@ -12,7 +12,8 @@ module.exports = function(server)
             view: 'edit',
             partials:
             {
-                timeline: 'partials/timeline'
+                timeline: 'partials/timeline',
+                options: 'partials/options'
             }
         }
         

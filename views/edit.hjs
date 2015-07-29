@@ -6,6 +6,7 @@
 
         </div>
 
+        {{> options}}
         {{> timeline}}
     </div>
 {{> foot}}

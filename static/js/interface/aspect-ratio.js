@@ -30,7 +30,7 @@ function closestRatio()
 
 $(document).ready(function()
 {
-    closestRatio();
+    console.log(closestRatio());
 
     $(window).on('resize', function()
     {

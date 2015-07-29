@@ -1,0 +1,11 @@
+<div class="options">
+    <div class="option">
+        <label>Aspect Ratio</label>
+        <select class="aspect-ratio"></select>
+    </div>
+
+    <div class="option">
+        <label>Zoom</label>
+        <input type="range" min="10" max="1000" value="100" step="1">
+    </div>
+</div>

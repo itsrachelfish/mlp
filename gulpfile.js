@@ -50,7 +50,7 @@ var bundle =
 
 function watch()
 {
-    gulp.watch('./static/css/**/*.scss', ['sass']);
+    gulp.watch('./static/css/**/*.scss', ['scss']);
 }
 
 // Add main script file to the bundle

@@ -9,9 +9,11 @@ var aspectRatios =
 
 $(document).ready(function()
 {
+    $('.options').dragondrop();
+    
     // Loop through common aspect ratios to build options menu
     for(var ratio in aspectRatios)
     {
-        $('.aspect-ratio').append('<option>'+ratio+'</option>');
+        $('.options .aspect-ratio').append('<option>'+ratio+'</option>');
     }
 });

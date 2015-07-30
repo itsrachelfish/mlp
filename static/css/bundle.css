@@ -18,3 +18,7 @@
   position: absolute;
   min-width: 400px;
   min-height: 200px; }
+
+.options {
+  border: 1px solid #ccc;
+  background-color: #eee; }

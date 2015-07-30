@@ -50,7 +50,13 @@ var bundle =
 
 function watch()
 {
-    gulp.watch('./static/css/**/*.scss', ['scss']);
+    gulp.watch('./static/css/**/*.scss', function()
+    {
+        setTimeout(function()
+        {
+            gulp.start('scss');
+        }, 100);
+    });
 }
 
 // Add main script file to the bundle

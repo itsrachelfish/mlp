@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/itsrachelfish/mlp",
   "dependencies": {
-    "dragondrop": "^0.4.2",
+    "dragondrop": "^0.4.3",
     "wetfish-basic": "^0.7.2",
     "wetfish-server": "~0.1.1"
   },

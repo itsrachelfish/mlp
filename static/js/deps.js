@@ -1088,6 +1088,10 @@
 
         $(drag.element).on('mousedown touchstart', function(event)
         {
+            // Ignore events on specific elements
+            if(drag.options.ignore.indexOf(event.target.tagName.toLowerCase()) > -1)
+                return;
+                
             event.preventDefault();
 
             // Prevent dropping onto other dragons
@@ -1219,7 +1223,12 @@
     {
         if(typeof options != "object")
         {
-            options = {};
+            // By default use these options
+            options =
+            {
+                // Ignore clicks on specific elements
+                ignore: ['input', 'textarea', 'button', 'select', 'option'],
+            };
         }
         
         this.forEach(this.elements, function(index, element)

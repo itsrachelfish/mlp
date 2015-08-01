@@ -26,7 +26,33 @@ Menu.prototype.init = function()
         template.appendChild($(this.selector).el[0]);
     }
 
+    // Restore this menu to its original position / state (minimized, etc.) from local storage
+
     $('.viewport').append(template);
+}
+
+// Minimize this menu to the bottom of the screen
+Menu.prototype.minimize = function()
+{
+
+}
+
+// Restore a minimized menu to its original position
+Menu.prototype.restore = function()
+{
+
+}
+
+// Resize a menu
+Menu.prototype.resize = function()
+{
+
+}
+
+// Save the position / state of the menu in local storage
+Menu.prototype.save = function()
+{
+
 }
 
 module.exports = Menu;

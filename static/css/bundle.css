@@ -7,17 +7,15 @@
 
 .canvas {
   position: fixed;
-  border: 1px solid #ccc;
-  bottom: 12.5%;
-  left: 12.5%;
-  right: 12.5%;
-  top: 12.5%; }
+  border: 1px solid #ccc; }
 
 .timeline {
   background-color: #eee;
   position: absolute;
   min-width: 400px;
-  min-height: 200px; }
+  min-height: 200px;
+  bottom: 0;
+  right: 0; }
 
 .options {
   border: 1px solid #ccc;

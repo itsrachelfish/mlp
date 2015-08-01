@@ -24,6 +24,7 @@
             this.el = this.elements = [selector];
         }
 
+        this.length = this.el.length;
         return this;
     }
 
@@ -52,7 +53,7 @@
     private.CustomEvent.prototype = window.Event.prototype;
 
     // Private function to determine element height
-    private.height = function(element)
+    private.height = function(element, mode)
     {
         // Special case for the window
         if(element == window)
@@ -62,24 +63,29 @@
                 inner: window.innerHeight,
                 outer: window.outerHeight
             };
+        }
+        else
+        {
+            // Document should actually reference the documentElement
+            if(element == document)
+            {
+                element = document.documentElement;
+            }
 
-            return height;
+            // Now get the computed style
+            var style = window.getComputedStyle(element);
+            var height =
+            {
+                inner: element.offsetHeight,
+                outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+            };
         }
 
-        // Document should actually reference the documentElement
-        if(element == document)
-        {
-            element = document.documentElement;
-        }
+        // If a valid mode was passed, return that property
+        if(height[mode] !== undefined)
+            return height[mode];
 
-        // Now get the computed style
-        var style = window.getComputedStyle(element);
-        var height =
-        {
-            inner: element.offsetHeight,
-            outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-        };
-       
+        // Otherwise return both
         return height;
     }
 
@@ -95,7 +101,7 @@
     }
 
     // Private function to determine element width
-    private.width = function(element)
+    private.width = function(element, mode)
     {
         // Special case for the window
         if(element == window)
@@ -105,24 +111,29 @@
                 inner: window.innerWidth,
                 outer: window.outerWidth
             };
+        }
+        else
+        {
+            // Document should actually reference the documentElement
+            if(element == document)
+            {
+                element = document.documentElement;
+            }
 
-            return width;
+            // Now get the computed style
+            var style = window.getComputedStyle(element);
+            var width =
+            {
+                inner: element.offsetWidth,
+                outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
+            };
         }
 
-        // Document should actually reference the documentElement
-        if(element == document)
-        {
-            element = document.documentElement;
-        }
+        // If a valid mode was passed, return that property
+        if(width[mode] !== undefined)
+            return width[mode];
 
-        // Now get the computed style
-        var style = window.getComputedStyle(element);
-        var width =
-        {
-            inner: element.offsetWidth,
-            outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
-        };
-        
+        // Otherwise return both
         return width;
     }
 
@@ -239,6 +250,35 @@
     }
 
     ////////////////////////////////
+    // clone(deep) - clone an element
+    // usage - var clone = $('.element').clone();
+
+    public.prototype.clone = function(deep)
+    {
+        if(deep === undefined)
+        {
+            deep = true;
+        }
+        
+        var output = [];
+
+        this.forEach(this.elements, function(index, element)
+        {
+            output.push(element.cloneNode(deep));
+        });
+
+        // If we only one element was cloned
+        if(output.length == 1)
+        {
+            // Return only that element
+            return output[0];
+        }
+
+        // Otherwise, return an array of clones
+        return output;
+    }
+
+    ////////////////////////////////
     // data('attribute')            - get the value of a data attribute on all matched elements
     // data('attribute', 'value')   - set the value of a data attribute on all matched elements
     // usage - $('svg text').data('stroke', 4);
@@ -351,39 +391,68 @@
     // removeClass() - remove a class from all matched nodes
     // usage - if($('.selector').hasClass('example')) { console.log('wow!'); }
 
-    public.prototype.hasClass = function(className)
+    public.prototype.hasClass = function(classes, mode)
     {
+        var classes = classes.split(' ');
         var match = false;
 
         // TODO: Break loop when match is found?
         this.forEach(this.elements, function(index, element)
         {
-            var classes = element.className.split(' ');
-            var index = classes.indexOf(className);
+            // Reset matches between each loop
+            var matches = {};
 
-            if(index != -1)
+            this.forEach(classes, function(index, className)
             {
-                match = true;
+                var classNames = element.className.split(' ');
+                var index = classNames.indexOf(className);
+
+                if(index != -1)
+                {
+                    matches[className] = true;
+                }
+            });
+
+            // If this is an inclusive match
+            if(mode == 'or')
+            {
+                if(Object.keys(matches).length)
+                {
+                    match = true;
+                }
+            }
+
+            // Otherwise, make sure we matched all of the requested classes
+            else
+            {
+                if(Object.keys(matches).length == classes.length)
+                {
+                    match = true;
+                }
             }
         });
 
         return match;
     }
 
-    // Depends on: height
+    // Depends on: ./deps/height.js
 
     ////////////////////////////////
     // height() - get the height of a specific element or all matched elements
     // usage - var height = $('.single-selector').height(); // Returns an object containing the element's inner and outer height
     // usage - var height = $('.multi-selector').height(); // Returns an array of objects containing the inner and outer height of all matched elements 
 
-    public.prototype.height = function()
+    public.prototype.height = function(mode)
     {
+        // Default to inner height
+        if(mode === undefined)
+            mode = 'inner';
+        
         var output = [];
 
         this.forEach(this.elements, function(index, element)
         {
-            output.push(private.height(element));
+            output.push(private.height(element, mode));
         });
 
         // If we were only checking the height of one element
@@ -420,6 +489,36 @@
     }
 
     ////////////////////////////////
+    // index() - find the index an element
+    // usage - var index = $('.element').index();
+
+    public.prototype.index = function()
+    {
+        var output = [];
+
+        this.forEach(this.elements, function(index, element)
+        {
+            this.forEach(element.parentNode.children, function(index, child)
+            {
+                if(element == child)
+                {
+                    output.push(index);
+                }
+            });
+        });
+
+        // If we only one element was matched
+        if(output.length == 1)
+        {
+            // Return only that element's index
+            return output[0];
+        }
+
+        // Otherwise, return an array of indexes
+        return output;
+    }
+
+    ////////////////////////////////
     // noConflict() - returns public class
     // usage - var customVar = basic.noConflict();
 
@@ -428,12 +527,53 @@
         return public;
     }
 
+    // Depends on: ./off.js
+
+    ////////////////////////////////
+    // off() - remove an event that is only fired when a child selector is matched
+    // usage - $('.selector').off('click', '.selector', callback);
+
+    private.eventCallbacks = [];
+    private.eventFunctions = [];
+
+    private.offSelector = function(events, selector, callback)
+    {
+        events = events.split(' ');
+
+        // Look for the index of this callback
+        var functionIndex = private.eventCallbacks.indexOf(callback);
+
+        // If the function is found
+        if(functionIndex > -1)
+        {
+            this.forEach(events, function(index, event)
+            {
+                this.forEach(this.elements, function(index, element)
+                {
+                    element.removeEventListener(event, private.eventFunctions[functionIndex]);
+                });
+            });
+
+            // Remove functions from arrays
+            delete private.eventCallbacks[functionIndex];
+            delete private.eventFunctions[functionIndex];
+        }
+        
+        return this;
+    }
+
     ////////////////////////////////
     // off() - remove an event from all matched elements
     // usage - $('.selector').off('click', callback);
 
     public.prototype.off = function(events, callback)
     {
+        // If more than two arguments are passed, handle this event using offSelector
+        if(arguments.length > 2 && private.offSelector !== undefined)
+        {
+            return private.offSelector.apply(this, arguments);
+        }
+        
         events = events.split(' ');
 
         this.forEach(events, function(index, event)
@@ -447,12 +587,61 @@
         return this;
     }
 
+    // Depends on: ./on.js
+
+    ////////////////////////////////
+    // on() - bind an event that is only fired when a child selector is matched
+    // usage - $('body').on('click', '.selector' function() { console.log('you clicked!'); });
+
+    private.eventCallbacks = [];
+    private.eventFunctions = [];
+
+    private.onSelector = function(events, selector, callback)
+    {
+        events = events.split(' ');
+
+        private.eventCallbacks.push(callback);
+        var functionIndex = private.eventFunctions.push(function(event)
+        {
+            var children = document.querySelectorAll(selector);
+
+            for(var i = 0, l = children.length; i < l; i++)
+            {
+                var child = children[i];
+
+                if(event.target == child)
+                {
+                    callback.call(event.target, event);
+                }
+            }
+        });
+
+        // Subtract 1 because push returns the array length
+        functionIndex--;
+
+        this.forEach(events, function(index, event)
+        {
+            this.forEach(this.elements, function(index, element)
+            {
+                element.addEventListener(event, private.eventFunctions[functionIndex]);
+            });
+        });
+
+        return this;
+    }
+
     ////////////////////////////////
     // on() - bind an event to all matched elements
     // usage - $('.selector').on('click', function() { console.log('you clicked!'); });
 
     public.prototype.on = function(events, callback)
     {
+        // If more than two arguments are passed, handle this event using onSelector
+        if(arguments.length > 2 && private.onSelector !== undefined)
+        {
+            return private.onSelector.apply(this, arguments);
+        }
+        
         events = events.split(' ');
 
         this.forEach(events, function(index, event)
@@ -572,7 +761,7 @@
         return this;
     }
 
-    // Depends on: customEvent
+    // Depends on: ./deps/customEvent.js
 
     ////////////////////////////////
     // ready() - wait for the page to load before firing callback
@@ -698,23 +887,27 @@
         return output;
     }
 
-    // Depends on: width, height
+    // Depends on: ./deps/width.js, ./deps/height.js
 
     ////////////////////////////////
     // size() - get the size of a specific element or all matched elements
     // usage - var size = $('.single-selector').size(); // Returns an object containing the element's height and width
     // usage - var size = $('.multi-selector').size(); // Returns an array of objects containing the height and width of all matched elements 
 
-    public.prototype.size = function()
+    public.prototype.size = function(mode)
     {
+        // Default to inner size
+        if(mode === undefined)
+            mode = 'inner';
+        
         var output = [];
 
         this.forEach(this.elements, function(index, element)
         {
             var size =
             {
-                height: private.height(element),
-                width: private.width(element)
+                height: private.height(element, mode),
+                width: private.width(element, mode)
             };
             
             output.push(size);
@@ -794,7 +987,7 @@
         return this;
     }
 
-    // Depends on: isArray
+    // Depends on: ./deps/isArray.js
 
     ////////////////////////////////
     // transform() - convenience function for handling CSS transforms
@@ -881,7 +1074,7 @@
         return this;
     }
 
-    // Depends on: customEvent
+    // Depends on: ./deps/customEvent.js
 
     ////////////////////////////////
     // trigger() - trigger an event on matched elements
@@ -964,20 +1157,24 @@
         return this;
     }
 
-    // Depends on: width
+    // Depends on: ./deps/width.js
 
     ////////////////////////////////
     // width() - get the width of a specific element or all matched elements
     // usage - var width = $('.single-selector').width(); // Returns an object containing the element's inner and outer width
     // usage - var width = $('.multi-selector').width(); // Returns an array of objects containing the inner and outer width of all matched elements 
 
-    public.prototype.width = function()
+    public.prototype.width = function(mode)
     {
+        // Default to inner width
+        if(mode === undefined)
+            mode = 'inner';
+
         var output = [];
 
         this.forEach(this.elements, function(index, element)
         {
-            output.push(private.width(element));
+            output.push(private.width(element, mode));
         });
 
         // If we were only checking the width of one element

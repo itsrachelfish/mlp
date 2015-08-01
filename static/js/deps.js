@@ -1304,7 +1304,6 @@
             // If a handle is being used, ignore all events except on that handle
             if(drag.options.handle)
             {
-                console.log(event.target, drag.handle);
                 if(event.target != drag.handle)
                     return;
             }

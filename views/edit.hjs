@@ -5,6 +5,8 @@
         <div class="canvas">
 
         </div>
+
+        <div class="tray"></div>
     </div>
 
     <div class="templates">

@@ -7,27 +7,44 @@ var Menu = function(options)
 
     // Initialize the menu
     this.init();
+    this.events();
 }
 
 Menu.prototype.init = function()
 {
     // Clone the menu template
-    var template = $('.templates .menu').clone();
-    $(template).find('.title').text(this.title);
+    this.template = $('.templates .menu').clone();
+    $(this.template).find('.title').text(this.title);
 
     if(this.class)
     {
-        $(template).addClass(this.class);
+        $(this.template).addClass(this.class);
     }
 
     if(this.selector)
     {
-        template.appendChild($(this.selector).el[0]);
+        this.template.appendChild($(this.selector).el[0]);
     }
 
     // Restore this menu to its original position / state (minimized, etc.) from local storage
 
-    $('.viewport').append(template);
+    $('.viewport').el[0].appendChild(this.template);
+}
+
+// Bind specific events for this menu
+Menu.prototype.events = function()
+{
+    var menu = this;
+    
+    $(this.template).on('click', '.minimize', function()
+    {
+        menu.minimize();
+    });
+
+    $(this.template).on('click', '.close', function()
+    {
+        menu.close();
+    });
 }
 
 // Minimize this menu to the bottom of the screen
@@ -57,7 +74,7 @@ Menu.prototype.save = function()
 // Close a menu
 Menu.prototype.close = function()
 {
-
+    this.template.remove();
 }
 
 module.exports = Menu;

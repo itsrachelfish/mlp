@@ -3,5 +3,8 @@
         Menu
     </div>
 
+    <div class="button minimize">_</div>
+    <div class="button close">x</div>
+
     <div class="content"></div>
 </div>

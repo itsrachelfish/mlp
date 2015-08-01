@@ -14,9 +14,27 @@
   border: 3px solid #ccc;
   background-color: #fff; }
 
-.menu .title {
-  background-color: #ccc;
-  font-weight: bold; }
+.menu {
+  position: relative; }
+  .menu .title {
+    background-color: #ccc;
+    font-weight: bold; }
+  .menu .button {
+    border: 1px solid #fff;
+    position: absolute;
+    cursor: pointer; }
+    .menu .button:hover {
+      background-color: #fff; }
+  .menu .minimize {
+    top: 0;
+    right: 15px; }
+  .menu .close {
+    top: 0;
+    right: 2px; }
+
+.tray {
+  position: fixed;
+  bottom: 0; }
 
 .timeline {
   background-color: #eee;

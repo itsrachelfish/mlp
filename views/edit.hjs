@@ -6,6 +6,7 @@
 
         </div>
 
+        {{> menu}}
         {{> options}}
         {{> timeline}}
     </div>

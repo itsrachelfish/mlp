@@ -11,6 +11,12 @@
   border: 3px solid #ccc;
   background-color: #fff; }
 
+.menu .title {
+  font-weight: bold; }
+
+.menu-template {
+  display: none; }
+
 .timeline {
   background-color: #eee;
   position: absolute;

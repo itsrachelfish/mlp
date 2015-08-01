@@ -1,3 +1,5 @@
+var Menu = require('menu');
+
 var options =
 {
     // Common aspect ratios
@@ -80,6 +82,7 @@ var helpers =
 
 $(document).ready(function()
 {
+    var menu = new Menu({title: 'Options', selector: '.options', class: 'option-menu'});
     $('.options').dragondrop();
 
     // Determine the closest aspect ratio on page load

@@ -1,4 +1,5 @@
 .viewport {
+  background-color: #000;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -7,7 +8,8 @@
 
 .canvas {
   position: fixed;
-  border: 1px solid #ccc; }
+  border: 3px solid #ccc;
+  background-color: #fff; }
 
 .timeline {
   background-color: #eee;

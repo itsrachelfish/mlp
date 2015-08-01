@@ -66,6 +66,15 @@ var helpers =
 
             $('.canvas').style(canvas);
         }
+    },
+
+    zoom:
+    {
+        update: function()
+        {
+            var scale = options.zoom / 100;
+            $('.canvas').transform('scale', scale, scale);
+        }
     }
 };
 
@@ -94,5 +103,11 @@ $(document).ready(function()
     {
         options.aspectRatio = $(this).value();
         helpers.ratio.update();
+    });
+
+    $('.options .zoom').on('input', function()
+    {
+        options.zoom = $(this).value();
+        helpers.zoom.update();
     });
 });

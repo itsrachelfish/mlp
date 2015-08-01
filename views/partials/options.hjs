@@ -6,6 +6,6 @@
 
     <div class="option">
         <label>Zoom</label>
-        <input type="range" min="10" max="1000" value="100" step="1">
+        <input class="zoom" type="range" min="10" max="200" value="100" step="1">
     </div>
 </div>

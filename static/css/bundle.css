@@ -35,6 +35,12 @@
 .tray {
   position: fixed;
   bottom: 0; }
+  .tray .minimized {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-right: 4px;
+    background-color: #ccc;
+    border: 3px solid #eee; }
 
 .timeline {
   background-color: #eee;

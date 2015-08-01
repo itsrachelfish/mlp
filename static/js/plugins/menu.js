@@ -29,6 +29,10 @@ Menu.prototype.init = function()
     // Restore this menu to its original position / state (minimized, etc.) from local storage
 
     $('.viewport').el[0].appendChild(this.template);
+
+    // Create a minimized template for use latter
+    this.minimized = $('.templates .minimized').clone();
+    $(this.minimized).find('.title').text(this.title);
 }
 
 // Bind specific events for this menu
@@ -45,18 +49,25 @@ Menu.prototype.events = function()
     {
         menu.close();
     });
+
+    $(this.minimized).on('click', function()
+    {
+        menu.restore();
+    });
 }
 
 // Minimize this menu to the bottom of the screen
 Menu.prototype.minimize = function()
 {
-
+    $(this.template).style({display: 'none'});
+    $('.tray').el[0].appendChild(this.minimized);
 }
 
 // Restore a minimized menu to its original position
 Menu.prototype.restore = function()
 {
-
+    $(this.template).style({display: 'block'});
+    $(this.minimized).remove();
 }
 
 // Resize a menu
@@ -75,6 +86,8 @@ Menu.prototype.save = function()
 Menu.prototype.close = function()
 {
     this.template.remove();
+
+    // TODO: Trigger an event to handle external garbage collection?
 }
 
 module.exports = Menu;

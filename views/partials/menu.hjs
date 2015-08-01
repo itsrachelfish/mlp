@@ -8,3 +8,7 @@
 
     <div class="content"></div>
 </div>
+
+<div class="minimized">
+    <div class="title"></div>
+</div>

@@ -1,4 +1,4 @@
-var Menu = require('menu');
+var Menu = require('../plugins/menu');
 
 var options =
 {
@@ -83,7 +83,7 @@ var helpers =
 $(document).ready(function()
 {
     var menu = new Menu({title: 'Options', selector: '.options', class: 'option-menu'});
-    $('.options').dragondrop();
+    $('.option-menu').dragondrop({handle: '.title'});
 
     // Determine the closest aspect ratio on page load
     options.aspectRatio = helpers.ratio.closest();

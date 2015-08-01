@@ -1,6 +1,8 @@
 // Code for the timeline
+var Menu = require('../plugins/menu');
 
 $(document).ready(function()
 {
-    $('.timeline').dragondrop();
+    var menu = new Menu({title: 'Timeline', selector: '.timeline', class: 'timeline-menu'});
+    $('.timeline-menu').dragondrop({handle: '.title'});
 });

@@ -4,26 +4,26 @@
     .title {
         background-color: #ccc;
         font-weight: bold;
-    }
 
-    .button {
-        border: 1px solid #fff;
-        position: absolute;
-        cursor: pointer;
+        .button {
+            border: 1px solid #fff;
+            position: absolute;
+            cursor: pointer;
 
-        &:hover {
-            background-color: #fff;
+            &:hover {
+                background-color: #fff;
+            }
         }
-    }
 
-    .minimize {
-        top: 0;
-        right: 15px;
-    }
+        .minimize {
+            top: 0;
+            right: 15px;
+        }
 
-    .close {
-        top: 0;
-        right: 2px;
+        .close {
+            top: 0;
+            right: 2px;
+        }
     }
 }
 

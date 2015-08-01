@@ -28,3 +28,7 @@ node_modules
 
 # Server configuration
 config.js
+
+# Gulp compiled files
+bundle.js
+bundle.css

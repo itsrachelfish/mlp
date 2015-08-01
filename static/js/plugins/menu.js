@@ -14,7 +14,7 @@ Menu.prototype.init = function()
 {
     // Clone the menu template
     this.template = $('.templates .menu').clone();
-    $(this.template).find('.title').text(this.title);
+    $(this.template).find('.title .text').text(this.title);
 
     if(this.class)
     {
@@ -85,7 +85,7 @@ Menu.prototype.save = function()
 // Close a menu
 Menu.prototype.close = function()
 {
-    this.template.remove();
+    $(this.template).style({display: 'none'});
 
     // TODO: Trigger an event to handle external garbage collection?
 }

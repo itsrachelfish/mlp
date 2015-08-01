@@ -12,8 +12,7 @@ var Menu = function(options)
 Menu.prototype.init = function()
 {
     // Clone the menu template
-    var template = $('.menu-template').clone();
-    $(template).removeClass('menu-template');
+    var template = $('.templates .menu').clone();
     $(template).find('.title').text(this.title);
 
     if(this.class)
@@ -51,6 +50,12 @@ Menu.prototype.resize = function()
 
 // Save the position / state of the menu in local storage
 Menu.prototype.save = function()
+{
+
+}
+
+// Close a menu
+Menu.prototype.close = function()
 {
 
 }

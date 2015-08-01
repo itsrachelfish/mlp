@@ -55,7 +55,7 @@ function watch()
         setTimeout(function()
         {
             gulp.start('scss');
-        }, 100);
+        }, 500);
     });
 }
 

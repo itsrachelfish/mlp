@@ -5,7 +5,9 @@
         <div class="canvas">
 
         </div>
+    </div>
 
+    <div class="templates">
         {{> menu}}
         {{> options}}
         {{> timeline}}

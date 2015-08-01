@@ -82,7 +82,7 @@ var helpers =
 
 $(document).ready(function()
 {
-    var menu = new Menu({title: 'Options', selector: '.options', class: 'option-menu'});
+    var menu = new Menu({title: 'Options', selector: '.templates .options', class: 'option-menu'});
     $('.option-menu').dragondrop({handle: '.title'});
 
     // Determine the closest aspect ratio on page load

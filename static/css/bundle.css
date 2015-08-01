@@ -1,3 +1,6 @@
+.templates {
+  display: none; }
+
 .viewport {
   background-color: #000;
   position: fixed;
@@ -14,9 +17,6 @@
 .menu .title {
   background-color: #ccc;
   font-weight: bold; }
-
-.menu-template {
-  display: none; }
 
 .timeline {
   background-color: #eee;

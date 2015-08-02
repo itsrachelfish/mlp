@@ -74,17 +74,15 @@ Menu.prototype.events = function()
                 y: event.clientY - menu.cursor.y
             };
 
-            var size = $(menu.template).find('.content').size();
-
-            $(menu.template).find('.content').style({width: size.width + delta.x + 'px', height: size.height + delta.y + 'px'});
-
             menu.cursor = {x: event.clientX, y: event.clientY};
+            menu.resize(delta);
         }
     });
 
     $('html').on('mouseup', function()
     {
         menu.resizing = false;
+        $(menu.template).trigger('resized');
     });
 }
 
@@ -103,9 +101,13 @@ Menu.prototype.restore = function()
 }
 
 // Resize a menu
-Menu.prototype.resize = function()
+Menu.prototype.resize = function(delta)
 {
+    // Get the current size
+    var size = $(this.template).find('.content').size();
 
+    // Resize this menu
+    $(this.template).find('.content').style({width: size.width + delta.x + 'px', height: size.height + delta.y + 'px'});
 }
 
 // Save the position / state of the menu in local storage

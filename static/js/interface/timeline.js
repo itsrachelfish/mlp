@@ -66,6 +66,8 @@ var timeline =
         events: function(layer)
         {
             $(layer).dragondrop({handle: '.handle', axis: 'y'});
+            $(layer).style({position: 'relative'});
+            
             $(layer).find('.delete').on('click', function()
             {
                 $(layer).remove();
@@ -87,6 +89,16 @@ $(document).ready(function()
     $('.timeline .duration').on('input', function()
     {
         // Update tick marks on each layer whenever the duration is changed
+        $('.timeline .layer').each(function()
+        {
+            var duration = $('.timeline .duration').value();
+            timeline.drawTicks(this, $(this).find('canvas').el[0], duration);
+        });
+    });
+
+    // Redraw canvases when the menu is resized
+    $('.timeline-menu').on('resized', function()
+    {
         $('.timeline .layer').each(function()
         {
             var duration = $('.timeline .duration').value();

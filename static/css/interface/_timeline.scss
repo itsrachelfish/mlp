@@ -3,23 +3,25 @@
     width: 400px;
     height: 200px;
     position: relative;
+    padding-bottom: 2.5em;
 
     .buttons {
         position: absolute;
         bottom: 0;
+        height: 2.5em;
 
         .button {
             display: inline-block;
         }
     }
 
+    .layers {
+        height: 100%;
+        overflow-y: scroll;
+    }
+
     .layer-wrap {
-        position: relative;
-    
-        .handle {
-            position: absolute;
-            top: 20px;
-        }
+        position: relative;    
     }
 
     .layer {

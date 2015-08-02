@@ -12,8 +12,11 @@
 </div>
 
 <div class="layer-wrap">
-    <div class="handle">⇅</div>
-
+    <div class="buttons">
+        <div class="handle">⇅</div>
+        <div class="delete">✗</div>
+    </div>
+    
     <div class="layer">
         <div class="objects"></div>
         <canvas></canvas>

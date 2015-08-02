@@ -8,4 +8,14 @@
         <label>Zoom</label>
         <input class="zoom" type="range" min="10" max="200" value="100" step="1">
     </div>
+
+    <div class="option">
+        <label>Autoplay</label>
+        <input class="autoplay" type="checkbox">
+    </div>
+
+    <div class="option">
+        <label>Loop</label>
+        <input class="loop" type="checkbox">
+    </div>
 </div>

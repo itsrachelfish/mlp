@@ -1,5 +1,6 @@
 .menu {
     position: relative;
+    border: 1px solid #ccc;
 
     .title {
         background-color: #ccc;
@@ -9,7 +10,7 @@
             border: 1px solid #fff;
             position: absolute;
             cursor: pointer;
-
+            
             &:hover {
                 background-color: #fff;
             }

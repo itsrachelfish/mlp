@@ -27,6 +27,10 @@
         }
     }
 
+    .content {
+        overflow: hidden;
+    }
+
     .resize {
         position: absolute;
         width: 1em;

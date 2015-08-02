@@ -106,8 +106,27 @@ Menu.prototype.resize = function(delta)
     // Get the current size
     var size = $(this.template).find('.content').size();
 
+    // Enforce a minimum size of 200x100 pixels
+    if(size.width + delta.x < 200)
+    {
+        size.width = '200px';
+    }
+    else
+    {
+        size.width = size.width + delta.x + 'px';
+    }
+    
+    if(size.height + delta.y < 100)
+    {
+        size.height = '100px';
+    }
+    else
+    {
+        size.height = size.height + delta.y + 'px'
+    }
+
     // Resize this menu
-    $(this.template).find('.content').style({width: size.width + delta.x + 'px', height: size.height + delta.y + 'px'});
+    $(this.template).find('.content').style(size);
 }
 
 // Save the position / state of the menu in local storage

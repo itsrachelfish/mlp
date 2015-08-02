@@ -23,7 +23,7 @@ Menu.prototype.init = function()
 
     if(this.selector)
     {
-        this.template.appendChild($(this.selector).el[0]);
+        $(this.template).find('.content').el[0].appendChild($(this.selector).el[0]);
     }
 
     // Restore this menu to its original position / state (minimized, etc.) from local storage
@@ -53,6 +53,38 @@ Menu.prototype.events = function()
     $(this.minimized).on('click', function()
     {
         menu.restore();
+    });
+
+    // TODO: Fix dragondrop, then replace this with it
+    $(this.template).on('mousedown', '.resize', function(event)
+    {
+        event.preventDefault();
+        
+        menu.resizing = true;
+        menu.cursor = {x: event.clientX, y: event.clientY};
+    });
+
+    $('html').on('mousemove', function(event)
+    {
+        if(menu.resizing)
+        {
+            var delta =
+            {
+                x: event.clientX - menu.cursor.x,
+                y: event.clientY - menu.cursor.y
+            };
+
+            var size = $(menu.template).find('.content').size();
+
+            $(menu.template).find('.content').style({width: size.width + delta.x + 'px', height: size.height + delta.y + 'px'});
+
+            menu.cursor = {x: event.clientX, y: event.clientY};
+        }
+    });
+
+    $('html').on('mouseup', function()
+    {
+        menu.resizing = false;
     });
 }
 

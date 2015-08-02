@@ -26,6 +26,15 @@
             right: 2px;
         }
     }
+
+    .resize {
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        z-index: 1;
+        bottom: 0;
+        right: 0;
+    }
 }
 
 .tray {

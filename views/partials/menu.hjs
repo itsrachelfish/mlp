@@ -7,6 +7,7 @@
     </div>
     
     <div class="content"></div>
+    <img class="resize" src="/img/resize.svg">
 </div>
 
 <div class="minimized">

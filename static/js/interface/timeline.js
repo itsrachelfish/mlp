@@ -44,7 +44,34 @@ var timeline =
                 timeline.drawTick(context, [offset, size.height], -10);
             }
         }
-    }
+    },
+
+    layer:
+    {
+        // Function which creates a layer based on the layer template
+        add: function()
+        {
+            // Add the new layer to the layers container
+            var layer = $('.templates .layer-wrap').clone();
+            $('.timeline .layers').el[0].appendChild(layer);
+
+            // Draw tick marks on the layer's canvas
+            var duration = $('.timeline .duration').value();
+            timeline.drawTicks($(layer).find('.layer').el[0], $(layer).find('canvas').el[0], duration);
+
+            timeline.layer.events(layer);
+        },
+
+        // Function to bind events for layers
+        events: function(layer)
+        {
+            $(layer).dragondrop({handle: '.handle', axis: 'y'});
+            $(layer).find('.delete').on('click', function()
+            {
+                $(layer).remove();
+            });
+        }
+    },
 };
 
 $(document).ready(function()
@@ -54,13 +81,7 @@ $(document).ready(function()
 
     $('.timeline .add-layer').on('click', function()
     {
-        // Add the new layer to the layers container
-        var layer = $('.templates .layer-wrap').clone();
-        $('.timeline .layers').el[0].appendChild(layer);
-
-        // Draw tick marks on the layer's canvas
-        var duration = $('.timeline .duration').value();
-        timeline.drawTicks($(layer).find('.layer').el[0], $(layer).find('canvas').el[0], duration);
+        timeline.layer.add();
     });
 
     $('.timeline .duration').on('input', function()

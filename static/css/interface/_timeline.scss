@@ -1,5 +1,32 @@
 .timeline {
     background-color: #eee;
-    min-width: 400px;
-    min-height: 200px;
+    width: 400px;
+    height: 200px;
+    position: relative;
+
+    .buttons {
+        position: absolute;
+        bottom: 0;
+
+        .button {
+            display: inline-block;
+        }
+    }
+
+    .layer-wrap {
+        position: relative;
+    
+        .handle {
+            position: absolute;
+            top: 20px;
+        }
+    }
+
+    .layer {
+        position: relative;
+        height: 50px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        margin-left: 1em;
+    }
 }

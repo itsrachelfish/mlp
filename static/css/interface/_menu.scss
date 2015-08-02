@@ -6,6 +6,10 @@
         background-color: #ccc;
         font-weight: bold;
 
+        .text {
+            pointer-events: none;
+        }
+
         .button {
             border: 1px solid #fff;
             position: absolute;

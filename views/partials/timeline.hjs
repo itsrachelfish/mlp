@@ -12,7 +12,8 @@
 </div>
 
 <div class="layer-wrap">
-    <div class="buttons">
+    <div class="icons">
+        <div class="visible">★</div>
         <div class="handle">⇅</div>
         <div class="delete">✗</div>
     </div>

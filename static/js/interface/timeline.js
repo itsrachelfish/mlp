@@ -66,7 +66,7 @@ var timeline =
         events: function(layer)
         {
             $(layer).dragondrop({handle: '.handle', axis: 'y'});
-            $(layer).style({position: 'relative'});
+            $(layer).attr('style', '');
             
             $(layer).find('.delete').on('click', function()
             {

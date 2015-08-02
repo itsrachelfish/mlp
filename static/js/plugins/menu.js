@@ -106,19 +106,19 @@ Menu.prototype.resize = function(delta)
     // Get the current size
     var size = $(this.template).find('.content').size();
 
-    // Enforce a minimum size of 200x100 pixels
-    if(size.width + delta.x < 200)
+    // Enforce a minimum size of 120x120 pixels
+    if(size.width + delta.x < 120)
     {
-        size.width = '200px';
+        size.width = '120px';
     }
     else
     {
         size.width = size.width + delta.x + 'px';
     }
     
-    if(size.height + delta.y < 100)
+    if(size.height + delta.y < 120)
     {
-        size.height = '100px';
+        size.height = '120px';
     }
     else
     {

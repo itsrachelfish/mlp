@@ -13,6 +13,7 @@ module.exports = function(server)
             partials:
             {
                 menu: 'partials/menu',
+                toolbar: 'partials/toolbar',
                 timeline: 'partials/timeline',
                 options: 'partials/options'
             }

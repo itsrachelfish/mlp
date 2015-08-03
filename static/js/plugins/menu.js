@@ -26,13 +26,38 @@ Menu.prototype.init = function()
         $(this.template).find('.content').el[0].appendChild($(this.selector).el[0]);
     }
 
-    // Restore this menu to its original position / state (minimized, etc.) from local storage
+    // Restore this menu to its original size / position from local storage
+    var size = localStorage.getItem(this.title + '-size');
+    var position = localStorage.getItem(this.title + '-pos')
+    var state = localStorage.getItem(this.title + '-state')
+    
+    if(size)
+    {
+        size = JSON.parse(size);
+        $(this.template).find('.content').style({height: size.height + 'px', width: size.width + 'px'});
+    }
 
+    if(position)
+    {
+        position = JSON.parse(position);
+        $(this.template).style({top: position.top + 'px', left: position.left + 'px'});
+    }
+    
     $('.viewport').el[0].appendChild(this.template);
 
     // Create a minimized template for use latter
     this.minimized = $('.templates .minimized').clone();
     $(this.minimized).find('.title').text(this.title);
+
+    // Check if the menu should start minimized or closed
+    if(state == 'minimized')
+    {
+        this.minimize();
+    }
+    else if(state == 'closed')
+    {
+        this.close();
+    }
 }
 
 // Bind specific events for this menu
@@ -81,8 +106,13 @@ Menu.prototype.events = function()
 
     $('html').on('mouseup', function()
     {
-        menu.resizing = false;
-        $(menu.template).trigger('resized');
+        if(menu.resizing)
+        {
+            menu.resizing = false;
+            menu.save();
+            
+            $(menu.template).trigger('resized');
+        }
     });
 }
 
@@ -91,6 +121,7 @@ Menu.prototype.minimize = function()
 {
     $(this.template).style({display: 'none'});
     $('.tray').el[0].appendChild(this.minimized);
+    localStorage.setItem(this.title + '-state', 'minimized');
 }
 
 // Restore a minimized menu to its original position
@@ -98,6 +129,7 @@ Menu.prototype.restore = function()
 {
     $(this.template).style({display: 'block'});
     $(this.minimized).remove();
+    localStorage.setItem(this.title + '-state', 'active');
 }
 
 // Resize a menu
@@ -132,15 +164,18 @@ Menu.prototype.resize = function(delta)
 // Save the position / state of the menu in local storage
 Menu.prototype.save = function()
 {
+    var size = $(this.template).find('.content').size();
+    var position = $(this.template).position();
 
+    localStorage.setItem(this.title + '-size', JSON.stringify(size))
+    localStorage.setItem(this.title + '-pos', JSON.stringify(position));
 }
 
 // Close a menu
 Menu.prototype.close = function()
 {
     $(this.template).style({display: 'none'});
-
-    // TODO: Trigger an event to handle external garbage collection?
+    localStorage.setItem(this.title + '-state', 'closed');
 }
 
 module.exports = Menu;

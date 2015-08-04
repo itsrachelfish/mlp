@@ -65,8 +65,18 @@ var timeline =
         // Function to bind events for layers
         events: function(layer)
         {
-            $(layer).dragondrop({handle: '.handle', axis: 'y'});
-            $(layer).attr('style', '');
+            $(layer).dragondrop({handle: '.handle', axis: 'y', position: 'static'});
+
+            // Hack to make dragondrop work since the draggable elements have so many children 
+            $(layer).on('dragstart', function()
+            {
+                $('.layer-wrap .icons, .layer-wrap .layer').style({'pointer-events': 'none'});
+            });
+
+            $(layer).on('dragend', function()
+            {
+                $('.layer-wrap .icons, .layer-wrap .layer').style({'pointer-events': 'auto'});
+            });
             
             $(layer).find('.delete').on('click', function()
             {

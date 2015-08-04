@@ -1,5 +1,5 @@
 <div class="timeline">
-    <div class="layers"></div>
+    <div class="layers droppable" data-group="layer"></div>
 
     <div class="buttons">
         <button class="button add-layer">Add Layer</button>
@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div class="layer-wrap">
+<div class="layer-wrap" data-group="layer">
     <div class="icons">
         <div class="visible">★</div>
         <div class="handle">⇅</div>
@@ -20,6 +20,7 @@
     
     <div class="layer">
         <div class="objects"></div>
+        <div class="cover"></div>
         <canvas></canvas>
     </div>
 </div>

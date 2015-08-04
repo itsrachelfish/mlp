@@ -30,5 +30,6 @@ node_modules
 config.js
 
 # Gulp compiled files
+deps.js
 bundle.js
 bundle.css

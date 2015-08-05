@@ -9,4 +9,18 @@ $(document).ready(function()
     {
         menu.save();
     });
+
+    $('.toolbar button').on('click', function()
+    {
+        var selector = $(this).data('selector');
+
+        if($(selector).style('display') == 'none')
+        {
+            $(selector).trigger('restore');
+        }
+        else
+        {
+            $(selector).trigger('close');
+        }
+    });
 });

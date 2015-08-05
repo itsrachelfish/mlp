@@ -4,6 +4,7 @@ var Menu = function(options)
     this.title = options.title || 'Menu';
     this.selector = options.selector || false;
     this.class = options.class;
+    this.buttons = options.buttons;
 
     // Initialize the menu
     this.init();
@@ -24,6 +25,17 @@ Menu.prototype.init = function()
     if(this.selector)
     {
         $(this.template).find('.content').el[0].appendChild($(this.selector).el[0]);
+    }
+
+    if(this.buttons)
+    {
+        $(this.template).find('.title .button').style({display: 'none'});
+
+        for(var i = 0, l = this.buttons.length; i < l; i++)
+        {
+            var button = this.buttons[i];
+            $(this.template).find('.title .' + button).style({display: 'block'});
+        }
     }
 
     // Restore this menu to its original size / position from local storage
@@ -79,6 +91,9 @@ Menu.prototype.events = function()
     {
         menu.restore();
     });
+
+//    $(this.template).find('.resize').dragondrop({position: 'static'});
+
 
     // TODO: Fix dragondrop, then replace this with it
     $(this.template).on('mousedown', '.resize', function(event)

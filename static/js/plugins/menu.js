@@ -92,6 +92,24 @@ Menu.prototype.events = function()
         menu.restore();
     });
 
+    // Allow other events to trigger this menu
+    $(this.template).on('minimize', function()
+    {
+        menu.minimize();
+    });
+
+    $(this.template).on('close', function()
+    {
+        menu.close();
+    });
+
+    $(this.template).on('restore', function()
+    {
+        menu.restore();
+    });
+
+    
+
 //    $(this.template).find('.resize').dragondrop({position: 'static'});
 
 
@@ -143,7 +161,12 @@ Menu.prototype.minimize = function()
 Menu.prototype.restore = function()
 {
     $(this.template).style({display: 'block'});
-    $(this.minimized).remove();
+
+    if(document.contains(this.minimized))
+    {
+        $(this.minimized).remove();
+    }
+    
     localStorage.setItem(this.title + '-state', 'active');
 }
 

@@ -49,35 +49,52 @@ var timeline =
         add: function()
         {
             // Add the new layer to the layers container
-            var layer = $('.templates .layer-wrap').clone();
-            $('.timeline .layers').el[0].appendChild(layer);
+            var wrap = $('.templates .layer-wrap').clone();
+            $('.timeline .layers').el[0].appendChild(wrap);
 
             // Draw tick marks on the layer's canvas
             var duration = $('.timeline .duration').value();
-            timeline.drawTicks($(layer).find('.layer').el[0], $(layer).find('canvas').el[0], duration);
+            timeline.drawTicks($(wrap).find('.layer').el[0], $(wrap).find('canvas').el[0], duration);
 
-            timeline.layer.events(layer);
+            timeline.layer.events(wrap);
         },
 
         // Function to bind events for layers
-        events: function(layer)
+        events: function(wrap)
         {
-            $(layer).dragondrop({handle: '.handle', axis: 'y', position: 'static'});
+            $(wrap).dragondrop({handle: '.handle', axis: 'y', position: 'static'});
 
             // Hack to make dragondrop work since the draggable elements have so many children 
-            $(layer).on('dragstart', function()
+            $(wrap).on('dragstart', function()
             {
                 $('.layer-wrap .icons, .layer-wrap .layer').style({'pointer-events': 'none'});
             });
 
-            $(layer).on('dragend', function()
+            $(wrap).on('dragend', function()
             {
                 $('.layer-wrap .icons, .layer-wrap .layer').style({'pointer-events': 'auto'});
             });
-            
-            $(layer).find('.delete').on('click', function()
+
+            $(wrap).find('.visible').on('click', function()
             {
-                $(layer).remove();
+                var icon = $(this);
+                var layer = $(wrap).find('.layer');
+
+                if(layer.hasClass('inactive'))
+                {
+                    icon.text('★');
+                    layer.removeClass('inactive');
+                }
+                else
+                {
+                    icon.text('☆');
+                    layer.addClass('inactive');
+                }
+            });
+            
+            $(wrap).find('.delete').on('click', function()
+            {
+                $(wrap).remove();
             });
         }
     },

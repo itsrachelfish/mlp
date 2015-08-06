@@ -118,6 +118,12 @@ Menu.prototype.events = function()
 
         resize.trigger('dragreset');
     });
+
+    resize.on('dragend', function(event)
+    {
+        menu.save();
+        $(menu.template).trigger('resized');
+    });
 }
 
 // Minimize this menu to the bottom of the screen

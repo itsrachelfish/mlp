@@ -77,75 +77,46 @@ Menu.prototype.events = function()
 {
     var menu = this;
     
-    $(this.template).on('click', '.minimize', function()
+    $(menu.template).on('click', '.minimize', function()
     {
         menu.minimize();
     });
 
-    $(this.template).on('click', '.close', function()
+    $(menu.template).on('click', '.close', function()
     {
         menu.close();
     });
 
-    $(this.minimized).on('click', function()
+    $(menu.minimized).on('click', function()
     {
         menu.restore();
     });
 
-    // Allow other events to trigger this menu
-    $(this.template).on('minimize', function()
+    // Allow other events to trigger menu menu
+    $(menu.template).on('minimize', function()
     {
         menu.minimize();
     });
 
-    $(this.template).on('close', function()
+    $(menu.template).on('close', function()
     {
         menu.close();
     });
 
-    $(this.template).on('restore', function()
+    $(menu.template).on('restore', function()
     {
         menu.restore();
     });
 
-    
+    var resize = $(menu.template).find('.resize');
+    resize.dragondrop({position: 'static'});
 
-//    $(this.template).find('.resize').dragondrop({position: 'static'});
-
-
-    // TODO: Fix dragondrop, then replace this with it
-    $(this.template).on('mousedown', '.resize', function(event)
+    resize.on('dragmove', function(event)
     {
-        event.preventDefault();
-        
-        menu.resizing = true;
-        menu.cursor = {x: event.clientX, y: event.clientY};
-    });
+        var delta = event.detail.delta;
+        menu.resize(delta);
 
-    $('html').on('mousemove', function(event)
-    {
-        if(menu.resizing)
-        {
-            var delta =
-            {
-                x: event.clientX - menu.cursor.x,
-                y: event.clientY - menu.cursor.y
-            };
-
-            menu.cursor = {x: event.clientX, y: event.clientY};
-            menu.resize(delta);
-        }
-    });
-
-    $('html').on('mouseup', function()
-    {
-        if(menu.resizing)
-        {
-            menu.resizing = false;
-            menu.save();
-            
-            $(menu.template).trigger('resized');
-        }
+        resize.trigger('dragreset');
     });
 }
 

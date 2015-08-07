@@ -12,10 +12,10 @@ module.exports = function(server)
             view: 'edit',
             partials:
             {
-                menu: 'partials/menu',
-                toolbar: 'partials/toolbar',
-                timeline: 'partials/timeline',
-                options: 'partials/options'
+                menu: 'menus/menu',
+                toolbar: 'menus/toolbar',
+                timeline: 'menus/timeline',
+                options: 'menus/options'
             }
         }
         

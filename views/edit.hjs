@@ -14,5 +14,8 @@
         {{> toolbar}}
         {{> options}}
         {{> timeline}}
+        {{> create}}
+        {{> object}}
+        {{> confirm}}
     </div>
 {{> foot}}

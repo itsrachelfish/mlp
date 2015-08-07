@@ -15,7 +15,10 @@ module.exports = function(server)
                 menu: 'menus/menu',
                 toolbar: 'menus/toolbar',
                 timeline: 'menus/timeline',
-                options: 'menus/options'
+                options: 'menus/options',
+                create: 'menus/create',
+                object: 'menus/object',
+                confirm: 'menus/confirm',
             }
         }
         

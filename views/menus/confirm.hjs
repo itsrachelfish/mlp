@@ -1,0 +1,6 @@
+<div class="confirm">
+    Are you sure you want to do this?
+
+    <button>Yes</button>
+    <button>Nope</button>
+</div>

@@ -1,0 +1,26 @@
+<div class="create">
+    Select a type of object to create
+
+    <select class="type">
+        <option>-----</option>
+        <option>Text</option>
+        <option>Drawing</option>
+        <option>Image</option>
+        <option>Video</option>
+        <option>Music</option>
+        <option>Preset</option>
+    </select>
+
+    Presets
+    <select class="preset">
+        <option>-----</option>
+        <option>Hitmarker</option>
+        <option>Explosion</option>
+        <option>Airhorn</option>
+        <option>MLG</option>
+        <option>Guns</option>
+        <option>Weed</option>
+        <option>Wow</option>
+        <option>Overlay</option>
+    </select>
+</div>

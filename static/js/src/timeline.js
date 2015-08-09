@@ -139,6 +139,12 @@ var timeline =
             {
                 timeline.hover.clear(hover);
             });
+
+            layer.on('click', function(event)
+            {
+//                $(selector).trigger('restore');
+                alert('hiya' + event.layerX);
+            });
         }
     },
 };

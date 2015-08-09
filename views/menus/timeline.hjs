@@ -21,6 +21,7 @@
     <div class="layer">
         <div class="objects"></div>
         <div class="cover"></div>
-        <canvas></canvas>
+        <canvas class="hover"></canvas>
+        <canvas class="ticks"></canvas>
     </div>
 </div>

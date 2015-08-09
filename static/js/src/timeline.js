@@ -18,15 +18,20 @@ var timeline =
         // Remove the border size
         size.width -= parseFloat($(layer).style('border-left-width')) + parseFloat($(layer).style('border-right-width'));
         size.height -= parseFloat($(layer).style('border-top-width')) + parseFloat($(layer).style('border-bottom-width'));
-        
-        $(canvas).attr('width', size.width);
-        $(canvas).attr('height', size.height);
+
+        $(layer).find('canvas').attr('width', size.width);
+        $(layer).find('canvas').attr('height', size.height);
 
         // Clear the canvas and draw new ticks
         var context = canvas.getContext('2d');
 
         // Make sure the canvas is cleared
-        context.clearRect(0, 0, size.width, size.height);
+//        context.fillStyle = 'rgba(255, 255, 255, 1)';
+//        context.fillRect(0, 0, size.width, size.height);
+//        context.fill();
+
+//        context.globalAlpha = 0.1;
+//        context.clearRect(0, 0, size.width, size.height);
 
         for(var i = 0, l = duration + 1; i < l; i++)
         {
@@ -43,6 +48,31 @@ var timeline =
         }
     },
 
+    hover:
+    {
+        draw: function(canvas, position)
+        {
+            // Start by clearning the canvas
+            timeline.hover.clear(canvas);
+
+            var context = canvas.getContext('2d');
+
+            context.beginPath();
+            context.moveTo(position, 0);
+            context.lineTo(position, canvas.height);
+            context.lineWidth = 3;
+            
+            context.strokeStyle = "rgb(255, 175, 100)";
+            context.stroke();
+        },
+
+        clear: function(canvas)
+        {
+            var context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    },
+
     layer:
     {
         // Function which creates a layer based on the layer template
@@ -54,7 +84,7 @@ var timeline =
 
             // Draw tick marks on the layer's canvas
             var duration = $('.timeline .duration').value();
-            timeline.drawTicks($(wrap).find('.layer').el[0], $(wrap).find('canvas').el[0], duration);
+            timeline.drawTicks($(wrap).find('.layer').el[0], $(wrap).find('canvas.ticks').el[0], duration);
 
             timeline.layer.events(wrap);
         },
@@ -95,6 +125,19 @@ var timeline =
             $(wrap).find('.delete').on('click', function()
             {
                 $(wrap).remove();
+            });
+
+            var layer = $(wrap).find('.layer');
+            var hover = $(wrap).find('canvas.hover').el[0];
+
+            layer.on('mouseenter mousemove', function(event)
+            {
+                timeline.hover.draw(hover, event.layerX);
+            });
+
+            layer.on('mouseleave', function(event)
+            {
+                timeline.hover.clear(hover);
             });
         }
     },

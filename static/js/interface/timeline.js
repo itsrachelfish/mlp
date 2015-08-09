@@ -23,7 +23,7 @@ $(document).ready(function()
         $('.timeline .layer').each(function()
         {
             var duration = $('.timeline .duration').value();
-            timeline.drawTicks(this, $(this).find('canvas').el[0], duration);
+            timeline.drawTicks(this, $(this).find('canvas.ticks').el[0], duration);
         });
     });
 
@@ -33,7 +33,7 @@ $(document).ready(function()
         $('.timeline .layer').each(function()
         {
             var duration = $('.timeline .duration').value();
-            timeline.drawTicks(this, $(this).find('canvas').el[0], duration);
+            timeline.drawTicks(this, $(this).find('canvas.ticks').el[0], duration);
         });
     });
 });

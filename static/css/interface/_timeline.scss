@@ -55,5 +55,19 @@
                 background-color: rgba(200, 200, 200, 0.5);
             }
         }
+
+        .objects {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 1em;
+            bottom: 0;
+            right: 0;
+        }
+
+        canvas {
+            position: absolute;
+            z-index: 1;
+        }
     }
 }

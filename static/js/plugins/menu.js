@@ -5,6 +5,7 @@ var Menu = function(options)
     this.selector = options.selector || false;
     this.class = options.class;
     this.buttons = options.buttons;
+    this.state = options.state;
 
     // Initialize the menu
     this.init();
@@ -40,8 +41,8 @@ Menu.prototype.init = function()
 
     // Restore this menu to its original size / position from local storage
     var size = localStorage.getItem(this.title + '-size');
-    var position = localStorage.getItem(this.title + '-pos')
-    var state = localStorage.getItem(this.title + '-state')
+    var position = localStorage.getItem(this.title + '-pos');
+    var state = this.state || localStorage.getItem(this.title + '-state');
     
     if(size)
     {

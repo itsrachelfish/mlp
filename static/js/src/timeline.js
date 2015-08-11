@@ -56,6 +56,7 @@ var timeline =
             timeline.hover.clear(canvas);
 
             var context = canvas.getContext('2d');
+            position -= 2;
 
             context.beginPath();
             context.moveTo(position, 0);
@@ -92,7 +93,11 @@ var timeline =
         // Function to bind events for layers
         events: function(wrap)
         {
-            console.log('sup');
+            // HOLY SHIT BASIC REALLY NEEDS .PARENTS()
+            var menu = wrap.parentNode.parentNode.parentNode.parentNode;
+            var layer = $(wrap).find('.layer');
+            var position = layer.position('page');
+            var hover = $(wrap).find('canvas.hover').el[0];
             
             $(wrap).dragondrop({handle: '.handle', axis: 'y', position: 'static'});
 
@@ -105,12 +110,20 @@ var timeline =
             $(wrap).on('dragend', function()
             {
                 $('.layer-wrap .icons, .layer-wrap .layer').style({'pointer-events': 'auto'});
+
+                // Update saved layer position
+                position = layer.position('page');
+            });
+
+            $(menu).on('dragend', function()
+            {
+                // Update saved layer position
+                position = layer.position('page');
             });
 
             $(wrap).find('.visible').on('click', function()
             {
                 var icon = $(this);
-                var layer = $(wrap).find('.layer');
 
                 if(layer.hasClass('inactive'))
                 {
@@ -129,15 +142,9 @@ var timeline =
                 $(wrap).remove();
             });
 
-            var layer = $(wrap).find('.layer');
-            var hover = $(wrap).find('canvas.hover').el[0];
-
-console.log("hi", timeline, hover);
-            timeline.hover.draw(hover, 44);
-
             layer.on('mouseenter mousemove', function(event)
             {
-                timeline.hover.draw(hover, event.layerX);
+                timeline.hover.draw(hover, event.clientX - position.left);
             });
 
             layer.on('mouseleave', function(event)

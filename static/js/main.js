@@ -1,6 +1,6 @@
-require('./interface/toolbar');
-require('./interface/timeline');
-require('./interface/options');
-require('./interface/confirm');
-require('./interface/create');
-require('./interface/object');
+require('./events/toolbar');
+require('./events/timeline');
+require('./events/options');
+require('./events/confirm');
+require('./events/create');
+require('./events/object');

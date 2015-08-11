@@ -92,6 +92,8 @@ var timeline =
         // Function to bind events for layers
         events: function(wrap)
         {
+            console.log('sup');
+            
             $(wrap).dragondrop({handle: '.handle', axis: 'y', position: 'static'});
 
             // Hack to make dragondrop work since the draggable elements have so many children 
@@ -129,6 +131,9 @@ var timeline =
 
             var layer = $(wrap).find('.layer');
             var hover = $(wrap).find('canvas.hover').el[0];
+
+console.log("hi", timeline, hover);
+            timeline.hover.draw(hover, 44);
 
             layer.on('mouseenter mousemove', function(event)
             {

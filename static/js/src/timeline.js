@@ -154,8 +154,7 @@ var timeline =
 
             layer.on('click', function(event)
             {
-//                $(selector).trigger('restore');
-                alert('hiya' + event.layerX);
+                $('.create-menu').trigger('restore');
             });
         }
     },

@@ -1,4 +1,5 @@
 var Menu = require('../plugins/menu');
+var create = require('../src/create.js');
 
 $(document).ready(function()
 {
@@ -12,6 +13,15 @@ $(document).ready(function()
     {
         var type = $(this).value().toLowerCase();
 
+        if(type)
+        {
+            $('.create .save').removeClass('hidden');
+        }
+        else
+        {
+            $('.create .save').addClass('hidden');
+        }
+
         if(type == 'preset')
         {
             $('.create .presets').style({display: 'block'});
@@ -19,6 +29,18 @@ $(document).ready(function()
         else
         {
             $('.create .presets').style({display: 'none'});
+        }
+    });
+
+    $('.create .save').on('click', function()
+    {
+        var type = $('.create .type').value();
+        if(typeof create[type] == "function")
+        {
+            var object = create[type]();
+            menu.close();
+
+            $('.object-menu').trigger('restore');
         }
     });
 

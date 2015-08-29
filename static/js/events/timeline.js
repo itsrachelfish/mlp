@@ -5,13 +5,7 @@ var timeline = require('../src/timeline');
 $(document).ready(function()
 {
     var menu = new Menu({title: 'Timeline', selector: '.templates .timeline', class: 'timeline-menu'});
-    $('.timeline-menu').dragondrop({handle: '.title'});
-
-    $('.timeline-menu').on('dragend', function()
-    {
-        menu.save();
-    });
-
+    
     $('.timeline .add-layer').on('click', function()
     {
         timeline.layer.add();

@@ -5,12 +5,6 @@ var helpers = require('../src/helpers');
 $(document).ready(function()
 {
     var menu = new Menu({title: 'Options', selector: '.templates .options', class: 'option-menu'});
-    $('.option-menu').dragondrop({handle: '.title'});
-
-    $('.option-menu').on('dragend', function()
-    {
-        menu.save();
-    });
 
     // Determine the closest aspect ratio on page load
     options.aspectRatio = helpers.ratio.closest();

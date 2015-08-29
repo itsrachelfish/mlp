@@ -109,6 +109,14 @@ Menu.prototype.events = function()
         menu.restore();
     });
 
+    // Allow dragging the menu by the title bar
+    $(menu.template).dragondrop({handle: '.title'});
+
+    $(menu.template).on('dragend', function()
+    {
+        menu.save();
+    });
+
     var resize = $(menu.template).find('.resize');
     resize.dragondrop({position: 'static'});
 

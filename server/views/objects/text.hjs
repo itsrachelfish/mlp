@@ -1,0 +1,21 @@
+<svg>
+    <pattern id="stroke-pattern" width="" height="" patternUnits="userSpaceOnUse">
+        <image xlink:href="" width="" height=""></image>
+    </pattern>
+    
+    <pattern id="text-pattern" width="" height="" patternUnits="userSpaceOnUse">
+        <image xlink:href="" width="" height=""></image>
+    </pattern>
+    
+    <text
+        class="stroke"
+        fill="none"
+        dominant-baseline="hanging"
+        stroke-linejoin="round">
+    </text>
+        
+    <text
+        class="text"
+        dominant-baseline="hanging">
+    </text>
+</svg>

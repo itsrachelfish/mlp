@@ -10,12 +10,18 @@
     </div>
 
     <div class="templates">
-        {{> menu}}
-        {{> toolbar}}
-        {{> options}}
-        {{> timeline}}
-        {{> create}}
-        {{> object}}
-        {{> confirm}}
+        <div class="menus">
+            {{> menu/menu}}
+            {{> menu/toolbar}}
+            {{> menu/options}}
+            {{> menu/timeline}}
+            {{> menu/create}}
+            {{> menu/object}}
+            {{> menu/confirm}}
+        </div>
+
+        <div class="objects">
+            {{> object/text}}
+        </div>
     </div>
 {{> foot}}

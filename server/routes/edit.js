@@ -12,13 +12,14 @@ module.exports = function(server)
             view: 'edit',
             partials:
             {
-                menu: 'menus/menu',
-                toolbar: 'menus/toolbar',
-                timeline: 'menus/timeline',
-                options: 'menus/options',
-                create: 'menus/create',
-                object: 'menus/object',
-                confirm: 'menus/confirm',
+                'menu/menu': 'menus/menu',
+                'menu/toolbar': 'menus/toolbar',
+                'menu/timeline': 'menus/timeline',
+                'menu/options': 'menus/options',
+                'menu/create': 'menus/create',
+                'menu/object': 'menus/object',
+                'menu/confirm': 'menus/confirm',
+                'object/text': 'objects/text',
             }
         }
         

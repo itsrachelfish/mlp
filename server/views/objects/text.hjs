@@ -1,4 +1,4 @@
-<div class="text object">
+<div class="text object" data-type="text">
     <svg>
         <pattern id="stroke-pattern" patternUnits="userSpaceOnUse">
             <image xlink:href=""></image>

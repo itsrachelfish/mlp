@@ -40,7 +40,7 @@ $(document).ready(function()
             var object = create[type](menu.event.detail);
             menu.close();
 
-            $('.object-menu').trigger('restore', menu.event.detail);
+            $('.object-menu').trigger('restore', {object: object});
         }
     });
 

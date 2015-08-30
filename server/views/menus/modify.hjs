@@ -15,22 +15,28 @@
     </div>
 
     <div class="group image hidden">
-        
+        [Image options]
     </div>
 
     <div class="group video hidden">
-        
+        [Video options]
     </div>
 
     <div class="group music hidden">
-        
+        [Music options]
     </div>
 
     <div class="group text hidden">
-
+        [Text options]
     </div>
 
     <div class="group drawing hidden">
-        
+        [Drawing options]
+    </div>
+
+    <div class="option">
+        <button>Save</button>
+        <button>Cancel</button>
+        <button>Delete</button>
     </div>
 </div>

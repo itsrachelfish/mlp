@@ -18,4 +18,9 @@
         <label>Loop</label>
         <input class="loop" type="checkbox">
     </div>
+
+    <div class="option">
+        <label>Animated Credits</label>
+        <input class="credits" type="checkbox">
+    </div>
 </div>

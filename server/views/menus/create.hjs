@@ -4,11 +4,11 @@
 
         <select class="type">
             <option value="">-----</option>
-            <option value="text">Text</option>
-            <option value="drawing">Drawing</option>
             <option value="image">Image</option>
             <option value="video">Video</option>
             <option value="music">Music</option>
+            <option value="text">Text</option>
+            <option value="drawing">Drawing</option>
             <option value="preset">Preset</option>
         </select>
     </div>

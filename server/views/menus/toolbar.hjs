@@ -1,5 +1,6 @@
 <div class="toolbar">
     <button data-selector=".option-menu">Options</button>
     <button data-selector=".timeline-menu">Timeline</button>
+    <button>Title</button>
     <button>Background</button>
 </div>

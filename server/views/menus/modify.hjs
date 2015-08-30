@@ -1,3 +1,36 @@
 <div class="modify">
-    Modify an object...
+    <div class="option">
+        <label>Duration</label>
+        <input class="zoom" type="range" min="0.1" max="300" value="5" step="0.1">
+    </div>
+
+    <div class="option">
+        <label>Rotation</label>
+        <input class="rotate" type="range" min="0" max="360" value="0" step="1">
+    </div>
+
+    <div class="option">
+        <label>Opacity</label>
+        <input class="rotate" type="range" min="0" max="1" value="0" step="0.01">
+    </div>
+
+    <div class="group image hidden">
+        
+    </div>
+
+    <div class="group video hidden">
+        
+    </div>
+
+    <div class="group music hidden">
+        
+    </div>
+
+    <div class="group text hidden">
+
+    </div>
+
+    <div class="group drawing hidden">
+        
+    </div>
 </div>

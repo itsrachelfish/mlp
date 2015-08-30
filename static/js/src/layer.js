@@ -16,6 +16,7 @@ var layer =
     add: function()
     {
         var id = layer.id();
+        var index = parseInt(id.replace(/[^0-9]/g, ''));
         
         // Add the new layer to the layers container
         var wrap = $('.templates .layer-wrap').clone();
@@ -35,14 +36,17 @@ var layer =
         // Save the unique layer ID
         $(wrap).data('id', id);
         $(element).attr('id', id);
+
+        // Set z-index
+        layer.index();
     },
 
     // Function to bind events for layers
     events: function(wrap)
     {
-        var menu = $(wrap).parents('.menu');
-        var layer = $(wrap).find('.layer');
-        var position = layer.position('page');
+        var $menu = $(wrap).parents('.menu');
+        var $layer = $(wrap).find('.layer');
+        var position = $layer.position('page');
         var hover = $(wrap).find('canvas.hover').el[0];
         
         $(wrap).dragondrop({handle: '.handle', axis: 'y', position: 'static'});
@@ -58,10 +62,13 @@ var layer =
             $('.layer-wrap .icons, .layer-wrap .layer').style({'pointer-events': 'auto'});
 
             // Update saved layer position
-            position = layer.position('page');
+            position = $layer.position('page');
+
+            // Update layer z-index
+            layer.index();
         });
 
-        menu.on('dragend', function()
+        $menu.on('dragend', function()
         {
             // Update saved layer position
             position = layer.position('page');
@@ -71,15 +78,15 @@ var layer =
         {
             var icon = $(this);
 
-            if(layer.hasClass('inactive'))
+            if($layer.hasClass('inactive'))
             {
                 icon.text('★');
-                layer.removeClass('inactive');
+                $layer.removeClass('inactive');
             }
             else
             {
                 icon.text('☆');
-                layer.addClass('inactive');
+                $layer.addClass('inactive');
             }
         });
         
@@ -88,20 +95,33 @@ var layer =
             $(wrap).remove();
         });
 
-        layer.on('mouseenter mousemove', function(event)
+        $layer.on('mouseenter mousemove', function(event)
         {
             timeline.hover.draw(hover, event.clientX - position.left);
         });
 
-        layer.on('mouseleave', function(event)
+        $layer.on('mouseleave', function(event)
         {
             timeline.hover.clear(hover);
         });
 
-        layer.on('click', function(event)
+        $layer.on('click', function(event)
         {
             var id = $(wrap).data('id');
             $('.create-menu').trigger('restore', {layer: id});
+        });
+    },
+
+    // Function to assign z-indexes to layers
+    index: function()
+    {
+        var total = $('.timeline .layers .layer-wrap').el.length;
+        $('.timeline .layers .layer-wrap').each(function()
+        {
+            var id = $(this).data('id');
+            var index = total - $(this).index();
+
+            $('#' + id).style({'z-index': index});
         });
     }
 };

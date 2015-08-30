@@ -3,7 +3,7 @@ var create =
     // Function to generate unique IDs for objects
     id: function()
     {
-        var id = parseInt($('body').data('objects'));
+        var id = parseInt($('body').data('objects') || 0);
         id++;
 
         $('body').data('objects', id);

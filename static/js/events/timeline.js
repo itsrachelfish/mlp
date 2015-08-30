@@ -1,6 +1,7 @@
 // Code for the timeline
 var Menu = require('../plugins/menu');
 var timeline = require('../src/timeline');
+var layer = require('../src/layer');
 
 $(document).ready(function()
 {
@@ -8,7 +9,7 @@ $(document).ready(function()
     
     $('.timeline .add-layer').on('click', function()
     {
-        timeline.layer.add();
+        layer.add();
     });
 
     $('.timeline .duration').on('input', function()

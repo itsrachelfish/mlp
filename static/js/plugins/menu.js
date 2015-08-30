@@ -62,15 +62,21 @@ Menu.prototype.init = function()
     this.minimized = $('.templates .minimized').clone();
     $(this.minimized).find('.title').text(this.title);
 
-    // Check if the menu should start minimized or closed
-    if(state == 'minimized')
+    // Horrible hack because minimizing / closing before dragondrop initializes resets the menu position
+    var menu = this;
+
+    setTimeout(function()
     {
-        this.minimize();
-    }
-    else if(state == 'closed')
-    {
-        this.close();
-    }
+        // Check if the menu should start minimized or closed
+        if(state == 'minimized')
+        {
+            menu.minimize();
+        }
+        else if(state == 'closed')
+        {
+            menu.close();
+        }
+    }, 1);
 }
 
 // Bind specific events for this menu

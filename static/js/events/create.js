@@ -35,9 +35,9 @@ $(document).ready(function()
     $('.create .save').on('click', function()
     {
         var type = $('.create .type').value();
-        if(typeof create[type] == "function")
+        if(create.types.indexOf(type) > -1)
         {
-            var object = create[type](menu.event.detail);
+            var object = create.object(type, menu.event.detail);
             menu.close();
 
             $('.object-menu').trigger('restore', {object: object});

@@ -21,6 +21,7 @@
         </div>
 
         <div class="objects">
+            {{> object/image}}
             {{> object/text}}
         </div>
     </div>

@@ -19,6 +19,7 @@ module.exports = function(server)
                 'menu/create': 'menus/create',
                 'menu/modify': 'menus/modify',
                 'menu/confirm': 'menus/confirm',
+                'object/image': 'objects/image',
                 'object/text': 'objects/text',
             }
         }

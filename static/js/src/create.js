@@ -9,11 +9,13 @@ var create =
         $('body').data('objects', id);
         return 'object-' + id;
     },
-    
-    text: function(options)
+
+    types: ['image', 'text'],
+
+    object: function(type, options)
     {
         // Get text template
-        var template = $('.templates .object.text').clone();
+        var template = $('.templates .object.' + type).clone();
         var id = create.id();
 
         $(template).attr('id', id);

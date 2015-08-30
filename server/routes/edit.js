@@ -17,7 +17,7 @@ module.exports = function(server)
                 'menu/timeline': 'menus/timeline',
                 'menu/options': 'menus/options',
                 'menu/create': 'menus/create',
-                'menu/object': 'menus/object',
+                'menu/modify': 'menus/modify',
                 'menu/confirm': 'menus/confirm',
                 'object/text': 'objects/text',
             }

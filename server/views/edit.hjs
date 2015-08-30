@@ -16,7 +16,7 @@
             {{> menu/options}}
             {{> menu/timeline}}
             {{> menu/create}}
-            {{> menu/object}}
+            {{> menu/modify}}
             {{> menu/confirm}}
         </div>
 

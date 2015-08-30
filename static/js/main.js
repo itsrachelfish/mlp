@@ -3,4 +3,4 @@ require('./events/timeline');
 require('./events/options');
 require('./events/confirm');
 require('./events/create');
-require('./events/object');
+require('./events/modify');

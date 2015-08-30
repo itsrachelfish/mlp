@@ -100,7 +100,8 @@ var layer =
 
         layer.on('click', function(event)
         {
-            $('.create-menu').trigger('restore');
+            var id = $(wrap).data('id');
+            $('.create-menu').trigger('restore', {layer: id});
         });
     }
 };

@@ -19,19 +19,18 @@ var timeline =
         size.width -= parseFloat($(layer).style('border-left-width')) + parseFloat($(layer).style('border-right-width'));
         size.height -= parseFloat($(layer).style('border-top-width')) + parseFloat($(layer).style('border-bottom-width'));
 
-        $(layer).find('canvas').attr('width', size.width);
-        $(layer).find('canvas').attr('height', size.height);
+        // Only update the canvas size if it actually changed
+        if($(layer).find('canvas').eq(0).attr('width') != size.width || $(layer).find('canvas').eq(0).attr('height') != size.height)
+        {
+            $(layer).find('canvas').attr('width', size.width);
+            $(layer).find('canvas').attr('height', size.height);
+        }
 
         // Clear the canvas and draw new ticks
         var context = canvas.getContext('2d');
 
         // Make sure the canvas is cleared
-//        context.fillStyle = 'rgba(255, 255, 255, 1)';
-//        context.fillRect(0, 0, size.width, size.height);
-//        context.fill();
-
-//        context.globalAlpha = 0.1;
-//        context.clearRect(0, 0, size.width, size.height);
+        context.clearRect(0, 0, size.width, size.height);
 
         for(var i = 0, l = duration + 1; i < l; i++)
         {

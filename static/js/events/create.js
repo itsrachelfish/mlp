@@ -3,7 +3,7 @@ var create = require('../src/create.js');
 
 $(document).ready(function()
 {
-    var menu = new Menu({title: 'Create Object', selector: '.templates .create', class: 'create-menu', state: 'closed'});
+    var menu = new Menu({title: 'Create Object', selector: '.templates .create', class: 'create-menu', state: 'closed', buttons: ['close']});
 
     // Make sure nothing is selected by default
     $('.create .type option').eq(0).prop('selected', true);
@@ -37,10 +37,10 @@ $(document).ready(function()
         var type = $('.create .type').value();
         if(typeof create[type] == "function")
         {
-            var object = create[type]();
+            var object = create[type](menu.event.detail);
             menu.close();
 
-            $('.object-menu').trigger('restore');
+            $('.object-menu').trigger('restore', menu.event.detail);
         }
     });
 

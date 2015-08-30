@@ -10,14 +10,14 @@ var create =
         return 'object-' + id;
     },
     
-    text: function()
+    text: function(options)
     {
         // Get text template
         var template = $('.templates .object.text').clone();
         var id = create.id();
 
         $(template).attr('id', id);
-        $('.canvas').append(template);
+        $('#' + options.layer).append(template);
 
         return id;
     }

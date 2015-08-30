@@ -86,32 +86,38 @@ Menu.prototype.events = function()
     
     $(menu.template).on('click', '.minimize', function()
     {
+        menu.event = {type: 'user'};
         menu.minimize();
     });
 
     $(menu.template).on('click', '.close', function()
     {
+        menu.event = {type: 'user'};
         menu.close();
     });
 
     $(menu.minimized).on('click', function()
     {
+        menu.event = {type: 'user'};
         menu.restore();
     });
 
     // Allow other events to trigger menu menu
-    $(menu.template).on('minimize', function()
+    $(menu.template).on('minimize', function(event)
     {
+        menu.event = {type: 'trigger', detail: event.detail};
         menu.minimize();
     });
 
-    $(menu.template).on('close', function()
+    $(menu.template).on('close', function(event)
     {
+        menu.event = {type: 'trigger', detail: event.detail};
         menu.close();
     });
 
-    $(menu.template).on('restore', function()
+    $(menu.template).on('restore', function(event)
     {
+        menu.event = {type: 'trigger', detail: event.detail};
         menu.restore();
     });
 

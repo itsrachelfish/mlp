@@ -2,9 +2,21 @@ var timeline = require('./timeline');
 
 var layer =
 {
+    // Function to generate unique IDs for layers
+    id: function()
+    {
+        var id = parseInt($('body').data('layers') || 0);
+        id++;
+
+        $('body').data('layers', id);
+        return 'layer-' + id;
+    },
+    
     // Function which creates a layer based on the layer template
     add: function()
     {
+        var id = layer.id();
+        
         // Add the new layer to the layers container
         var wrap = $('.templates .layer-wrap').clone();
         $('.timeline .layers').el[0].appendChild(wrap);
@@ -14,6 +26,15 @@ var layer =
         timeline.drawTicks($(wrap).find('.layer').el[0], $(wrap).find('canvas.ticks').el[0], duration);
 
         layer.events(wrap);
+
+        // Add a layer to the canvas
+        var element = document.createElement('div');
+        $(element).addClass('layer');
+        $('.canvas').el[0].appendChild(element);
+
+        // Save the unique layer ID
+        $(wrap).data('id', id);
+        $(element).attr('id', id);
     },
 
     // Function to bind events for layers

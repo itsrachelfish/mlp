@@ -7,7 +7,7 @@ var create =
         id++;
 
         $('body').data('objects', id);
-        return id;
+        return 'object-' + id;
     },
     
     text: function()

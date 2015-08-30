@@ -19,8 +19,7 @@ var layer =
     // Function to bind events for layers
     events: function(wrap)
     {
-        // HOLY SHIT BASIC REALLY NEEDS .PARENTS()
-        var menu = wrap.parentNode.parentNode.parentNode.parentNode;
+        var menu = $(wrap).parents('.menu');
         var layer = $(wrap).find('.layer');
         var position = layer.position('page');
         var hover = $(wrap).find('canvas.hover').el[0];
@@ -41,7 +40,7 @@ var layer =
             position = layer.position('page');
         });
 
-        $(menu).on('dragend', function()
+        menu.on('dragend', function()
         {
             // Update saved layer position
             position = layer.position('page');

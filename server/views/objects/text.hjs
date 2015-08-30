@@ -1,11 +1,11 @@
 <div class="text object">
     <svg>
-        <pattern id="stroke-pattern" width="" height="" patternUnits="userSpaceOnUse">
-            <image xlink:href="" width="" height=""></image>
+        <pattern id="stroke-pattern" patternUnits="userSpaceOnUse">
+            <image xlink:href=""></image>
         </pattern>
         
-        <pattern id="text-pattern" width="" height="" patternUnits="userSpaceOnUse">
-            <image xlink:href="" width="" height=""></image>
+        <pattern id="text-pattern" patternUnits="userSpaceOnUse">
+            <image xlink:href=""></image>
         </pattern>
         
         <text

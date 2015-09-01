@@ -1,0 +1,47 @@
+{
+    "title":
+    {
+        "text": "Nice Example Ya Got There",
+        "effect": "marquee"
+    },
+    
+    "background":
+    {
+        
+    },
+    
+    "options":
+    {
+
+    },
+    
+    "layers":
+    [
+        {
+            "name": "Layer 1",
+            "visible": true,
+            "objects":
+            [
+                {
+                    "type": "text",
+                    "duration": "100%",
+                    "rotation": "45deg",
+                    "opacity": 0.8,
+                    "width": "50%",
+                    "height": "auto",
+                    "text": "Hi there handsome!!",
+                    "size": "44pt"
+                }
+            ]
+        },
+
+        {
+            "name": "Stars",
+            "visible": true,
+            "objects":
+            [
+
+            ]
+        }
+    ]
+}

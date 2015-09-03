@@ -26,6 +26,7 @@ An example document can be found at [./example.weed](example.weed)
 
 ## Options
 
+- **duration**
 - **aspectRatio**
 - **autoPlay**
 - **loop**
@@ -43,13 +44,22 @@ An example document can be found at [./example.weed](example.weed)
 ## Objects
 
 - **type**
+- **name**
+- **start**
 - **duration**
 - **rotation**
+- **position**
+- **scale**
+- **skew**
+- **visible**
 - **opacity**
 - **width**
 - **height**
+- **rounded**
 - **animations**
 - **events**
+- **background**
+
 
 ## Type-specific Properties
 
@@ -65,8 +75,31 @@ An example document can be found at [./example.weed](example.weed)
 
 ### Group
 
+- **objects**
+
 
 ## Animations
 
+- **name**
+- **autoPlay**
+- **loop**
+- **duration**
+- **rotation**
+- **position**
+- **scale**
+- **skew**
+- **background**
 
 ## Events
+
+- **hover**
+- **leave**
+- **click**
+- **release**
+- **animated**
+- **tick**
+
+
+## Counters
+
+A key value store of integers. Can be modified by events and can be used in conditional logic.

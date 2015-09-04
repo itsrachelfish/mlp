@@ -45,33 +45,64 @@ An example document can be found at [./example.weed](example.weed)
 
 - **type**
 - **name**
+- **id**
 - **start**
 - **duration**
-- **rotation**
-- **position**
-- **scale**
-- **skew**
-- **visible**
-- **opacity**
-- **width**
-- **height**
-- **rounded**
+- **credits**
+ - **title**
+ - **creator**
+ - **license**
+ - **url**
+ - **notes**
+- **style**
+ - **border**
+ - **rotation**
+ - **position**
+ - **scale**
+ - **skew**
+ - **visible**
+ - **opacity**
+ - **width**
+ - **height**
+ - **rounded**
+ - **background**
 - **animations**
 - **events**
-- **background**
 
 
 ## Type-specific Properties
 
 ### Image
 
+- **source**
+
 ### Video
+
+- **source**
+- **controls**
+- **autoPlay**
 
 ### Music
 
+- **source**
+- **controls**
+- **autoPlay**
+
 ### Text
 
+- **size**
+- **color**
+- **stroke**
+ - **size**
+ - **color**
+
 ### Drawing
+
+- **shapes**
+ - **path**
+ - **color**
+ - **animated**
+ - **loop*
 
 ### Group
 
@@ -83,15 +114,19 @@ An example document can be found at [./example.weed](example.weed)
 - **name**
 - **autoPlay**
 - **loop**
-- **duration**
-- **rotation**
-- **position**
-- **scale**
-- **skew**
-- **background**
+- **style**
+ - **border**
+ - **duration**
+ - **rotation**
+ - **position**
+ - **scale**
+ - **skew**
+ - **background**
 
 ## Events
 
+- **start**
+- **end**
 - **hover**
 - **leave**
 - **click**
@@ -103,3 +138,8 @@ An example document can be found at [./example.weed](example.weed)
 ## Counters
 
 A key value store of integers. Can be modified by events and can be used in conditional logic.
+
+
+## Conditionals
+
+Conditionals can be used inside event definitions to compare the values of counters or displayed objects.

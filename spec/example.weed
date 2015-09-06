@@ -7,12 +7,18 @@
     
     "background":
     {
-        
+        "color": "#871D85",
+        "image":
+        [
+            "/spec/assets/background.svg"
+        ]
     },
     
     "options":
     {
-
+        "aspectRatio": "16:9",
+        "autoPlay": true,
+        "loop": true
     },
     
     "layers":
@@ -24,7 +30,6 @@
             [
                 {
                     "type": "text",
-                    "duration": "100%",
                     "rotation": "45deg",
                     "opacity": 0.8,
                     "width": "50%",
@@ -40,7 +45,10 @@
             "visible": true,
             "objects":
             [
-
+                {
+                    "type": "image",
+                    "source": "/spec/assets/sparkle.png"
+                }
             ]
         }
     ]

@@ -3,6 +3,10 @@
     border: 1px solid #ccc;
     z-index: 1337;
 
+    &.dragging {
+        z-index: 2000;
+    }
+
     .title {
         background-color: #ccc;
         font-weight: bold;

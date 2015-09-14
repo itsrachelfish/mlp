@@ -1,6 +1,7 @@
 {{> head}}
     {{> header}}
 
-    view a thing
-    
+    <div class="viewport" data-src="/spec/example.weed">
+        <div class="canvas"></div>
+    </div>
 {{> foot}}
